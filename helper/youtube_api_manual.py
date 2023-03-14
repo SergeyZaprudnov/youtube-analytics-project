@@ -6,9 +6,9 @@ from googleapiclient.discovery import build
 
 import isodate
 
-
 # YT_API_KEY скопирован из гугла и вставлен в переменные окружения
 api_key: str = os.getenv('YT_API_KEY')
+print(api_key)
 
 # создать специальный объект для работы с API
 youtube = build('youtube', 'v3', developerKey=api_key)
@@ -22,14 +22,12 @@ def printj(dict_to_print: dict) -> None:
 '''
 получить данные о канале по его id
 docs: https://developers.google.com/youtube/v3/docs/channels/list
-
 сервис для быстрого получения id канала: https://commentpicker.com/youtube-channel-id.php
 '''
 # channel_id = 'UCMCgOm8GZkHp8zJ6l7_hIuA'  # вДудь
 channel_id = 'UC1eFXmJNkjITxPFWTy6RsWg'  # Редакция
 channel = youtube.channels().list(id=channel_id, part='snippet,statistics').execute()
 printj(channel)
-
 
 '''
 получить данные по play-листам канала
@@ -44,11 +42,9 @@ for playlist in playlists['items']:
     print(playlist)
     print()
 
-
 '''
 получить данные по видеороликам в плейлисте
 docs: https://developers.google.com/youtube/v3/docs/playlistItems/list
-
 получить id плейлиста можно из браузера, например
 https://www.youtube.com/playlist?list=PLguYHBi01DWr4bRWc4uaguASmo7lW4GCb
 или из ответа API: см. playlists выше
@@ -80,7 +76,6 @@ for video in video_response['items']:
     iso_8601_duration = video['contentDetails']['duration']
     duration = isodate.parse_duration(iso_8601_duration)
     print(duration)
-
 
 '''
 получить статистику видео по его id
