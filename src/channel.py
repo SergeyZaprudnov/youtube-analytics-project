@@ -65,3 +65,10 @@ class Channel:
             return True
         else:
             return False
+
+    def __gt__(self, other):
+        """Сравнивает подписчиков"""
+        if int(self.subscriberCount) >= int(other.subscriberCount):
+            return True
+        else:
+            return False
