@@ -1,6 +1,6 @@
 import os
 import json
-from dataclasses import dataclass
+# from dataclasses import dataclass
 from googleapiclient.discovery import build
 
 
@@ -31,9 +31,9 @@ class Channel:
         return self.__channel_id
 
     @classmethod
-    def get_service(cls, channel_id):
+    def get_service(cls):
         """Возвращает объект для работы с YouTube API"""
-        return cls(channel_id=channel_id)
+        return cls.youtube
 
     def to_json(self, file_name: str) -> None:
         """Сохраняет в файл значения атрибутов экземпляра Channel"""
