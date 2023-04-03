@@ -15,3 +15,8 @@ class PlayList:
             maxResults=10,
         ).execute()
 
+@property
+def video_ids(self):
+    """Получаем все id листа"""
+    video_ids: list[str] = [video['contentDetails']['videoId'] for video in self.youtube['items']]
+    return video_ids
