@@ -15,8 +15,21 @@ class PlayList:
             maxResults=10,
         ).execute()
 
+
 @property
 def video_ids(self):
     """Получаем все id листа"""
     video_ids: list[str] = [video['contentDetails']['videoId'] for video in self.youtube['items']]
     return video_ids
+
+@property
+def video_time(self):
+    """Длительность роликов"""
+    res = datetime.timedelta()
+
+    for video in self.video_response['items']:
+        iso_8601_duration = video['contentDetails']['duration']
+        duration = isodate.parse_duration(iso_8601_duration)
+        res += duration
+    return res
+
