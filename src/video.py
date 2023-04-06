@@ -7,7 +7,7 @@ class Video:
         self.id_video = id_video
         try:
             self.youtube = Channel.get_service().videos().list(
-                    part='snippet,statistics,contentDetails,topicDetails', id=self.id_video
+                part='snippet,statistics,contentDetails,topicDetails', id=self.id_video
             ).execute()
             self.title = self.youtube.get('items')[0].get('snippet').get('title')
             self.url = 'https://www.youtube.com/watch?v=' + self.youtube.get('items')[0].get('id')
@@ -20,6 +20,7 @@ class Video:
             self.url = None
             self.viev_count = None
             self.like_count = None
+
     def __str__(self):
         return f'{self.title}'
 
